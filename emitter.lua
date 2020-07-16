@@ -1,5 +1,3 @@
--- I'm just gonna write my own library for events
--- I'm sick of fixing other people's bugs
 local Emitter = {}
 
 local pfx_once = '_once_'
@@ -30,15 +28,8 @@ end
 
 
 function Emitter:on(event, listener)
-
-    if self.events[event] then
-        table.insert(self.events[event], listener)
-
-    else
-        self.events[event] = { listener }
-    end
-
-
+    self.events[event] = self.events[event] or {}
+    table.insert(self.events[event], listener)
 end
 
 
